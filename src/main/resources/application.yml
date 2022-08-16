@@ -1,0 +1,28 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8091/eureka
+
+spring:
+  application:
+    name: eureka-auth-service
+  profiles:
+    active: ${PROFILE:dev}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_SERVER:localhost}:${POSTGRES_PORT:5421}/${POSTGRES_DATABASE:social_network_backend_auth_service_postgres_db}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:123}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: create
+    show-sql: true
+
+jwt:
+  token:
+    singing:
+      key: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
+    validate:
+      ms: 21600000
