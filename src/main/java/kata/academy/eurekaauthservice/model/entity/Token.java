@@ -5,18 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import java.time.Instant;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -24,35 +20,32 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
-public class User {
+public class Token {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column
+    private User user;
+
     @Column(unique = true, nullable = false)
-    private String email;
+    private String token;
 
-    @NotBlank
-    @Column(nullable = false)
-    private String password;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "token")
-    private Token token;
+    @Column
+    private Instant expiryDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        Token token1 = (Token) o;
+        return id.equals(token1.id) && user.equals(token1.user) && token.equals(token1.token) && expiryDate.equals(token1.expiryDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password);
+        return Objects.hash(id, user, token, expiryDate);
     }
 }
