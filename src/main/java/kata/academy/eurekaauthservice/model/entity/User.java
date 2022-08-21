@@ -39,10 +39,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "token")
-    private Token token;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
