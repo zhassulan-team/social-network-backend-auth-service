@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,6 +23,7 @@ import java.util.Objects;
 public class Token {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
@@ -34,8 +37,8 @@ public class Token {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Token token = (Token) o;
-        return id.equals(token.id) && user.equals(token.user) && token.equals(token.token) && expiryDate.equals(token.expiryDate);
+        Token token1 = (Token) o;
+        return Objects.equals(id, token1.id) && Objects.equals(user, token1.user) && Objects.equals(token, token1.token) && Objects.equals(expiryDate, token1.expiryDate);
     }
 
     @Override
