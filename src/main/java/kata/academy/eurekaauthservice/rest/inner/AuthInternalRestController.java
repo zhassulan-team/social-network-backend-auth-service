@@ -17,8 +17,8 @@ public class AuthInternalRestController {
 
     private final UserRepository userRepository;
 
-    @GetMapping("/{followedId}")
-    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long followedId) {
-        return ResponseEntity.ok(userRepository.existsById(followedId));
+    @GetMapping("/{userId}/exists")
+    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long userId) {
+        return ResponseEntity.ok(userRepository.existsById(userId));
     }
 }
