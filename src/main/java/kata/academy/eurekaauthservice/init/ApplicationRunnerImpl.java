@@ -1,7 +1,7 @@
 package kata.academy.eurekaauthservice.init;
 
 import kata.academy.eurekaauthservice.model.entity.User;
-import kata.academy.eurekaauthservice.service.AuthService;
+import kata.academy.eurekaauthservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,14 +14,16 @@ import org.springframework.stereotype.Component;
 @Profile("dev")
 public class ApplicationRunnerImpl implements ApplicationRunner {
 
-    private final AuthService authService;
+    private final UserService userService;
 
     @Override
     public void run(ApplicationArguments args) {
-        for (long i = 1; i <= 30; i++) {
-            StringBuilder email = new StringBuilder("user");
-            email.append(i).append("@").append("mail.ru");
-            authService.addUser(new User(i, email.toString(), "user"));
+        for (int i = 1; i <= 30; i++) {
+            String email = new StringBuilder("user").append(i).append("@").append("mail.ru").toString();
+            User user = new User();
+            user.setEmail(email);
+            user.setPassword("user");
+            userService.addUser(user);
         }
     }
 }

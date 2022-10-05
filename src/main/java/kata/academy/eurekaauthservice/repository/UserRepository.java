@@ -3,6 +3,6 @@ package kata.academy.eurekaauthservice.repository;
 import kata.academy.eurekaauthservice.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuthRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }
