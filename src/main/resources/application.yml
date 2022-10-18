@@ -20,6 +20,9 @@ spring:
     hibernate.ddl-auto: create
     show-sql: true
 
-feign:
-  circuitbreaker:
-    enabled: true
+jwt:
+  token:
+    singing:
+      key: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
+    validate:
+      ms: 21600000
