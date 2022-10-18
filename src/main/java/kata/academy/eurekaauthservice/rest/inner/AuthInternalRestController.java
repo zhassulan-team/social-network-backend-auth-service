@@ -28,8 +28,8 @@ public class AuthInternalRestController {
         return ResponseEntity.ok(userService.validate(token));
     }
 
-    @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long id) {
-        return ResponseEntity.ok(userService.existsById(id));
+    @GetMapping("/{userId}/exists")
+    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long userId) {
+        return ResponseEntity.ok(userService.existsById(userId));
     }
 }

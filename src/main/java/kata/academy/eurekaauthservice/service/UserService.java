@@ -14,5 +14,5 @@ public interface UserService {
 
     UserValidateDto validate(String token);
 
-    boolean existsById(Long id);
+    boolean existsById(Long userId);
 }

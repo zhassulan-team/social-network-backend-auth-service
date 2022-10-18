@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existsById(Long id) {
-        return userRepository.existsById(id);
+    public boolean existsById(Long userId) {
+        return userRepository.existsById(userId);
     }
 }
