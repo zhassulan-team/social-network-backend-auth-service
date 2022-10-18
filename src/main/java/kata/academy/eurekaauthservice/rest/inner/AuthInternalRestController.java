@@ -5,12 +5,15 @@ import kata.academy.eurekaauthservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 @RequiredArgsConstructor
 @Validated
@@ -23,5 +26,10 @@ public class AuthInternalRestController {
     @PostMapping("/validate")
     public ResponseEntity<UserValidateDto> validate(@RequestParam @NotBlank String token) {
         return ResponseEntity.ok(userService.validate(token));
+    }
+
+    @GetMapping("/{id}/exists")
+    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long id) {
+        return ResponseEntity.ok(userService.existsById(id));
     }
 }
