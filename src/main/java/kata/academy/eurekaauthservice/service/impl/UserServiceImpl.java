@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         return jwtUtil.parse(token);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public boolean existsById(Long userId) {
         return userRepository.existsById(userId);
