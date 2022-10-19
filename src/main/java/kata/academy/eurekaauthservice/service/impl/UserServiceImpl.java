@@ -57,4 +57,10 @@ public class UserServiceImpl implements UserService {
     public UserValidateDto validate(String token) {
         return jwtUtil.parse(token);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public boolean existsById(Long userId) {
+        return userRepository.existsById(userId);
+    }
 }

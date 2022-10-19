@@ -13,4 +13,6 @@ public interface UserService {
     String authenticate(UserDto userDto);
 
     UserValidateDto validate(String token);
+
+    boolean existsById(Long userId);
 }
