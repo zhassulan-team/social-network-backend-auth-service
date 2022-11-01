@@ -29,7 +29,7 @@ public class AuthInternalRestController {
     }
 
     @GetMapping("/{userId}/exists")
-    public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long userId) {
-        return ResponseEntity.ok(userService.existsById(userId));
+    public Boolean existsById(@PathVariable @Positive Long userId) {
+        return userService.existsById(userId);
     }
 }
