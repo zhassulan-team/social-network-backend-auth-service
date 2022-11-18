@@ -3,6 +3,7 @@ package kata.academy.eurekaauthservice.rest.inner;
 import kata.academy.eurekaauthservice.model.dto.UserValidateDto;
 import kata.academy.eurekaauthservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +32,13 @@ public class AuthInternalRestController {
     @GetMapping("/{userId}/exists")
     public ResponseEntity<Boolean> existsById(@PathVariable @Positive Long userId) {
         return ResponseEntity.ok(userService.existsById(userId));
+    }
+
+    @GetMapping("/{userId}/email")
+    ResponseEntity<String> getEmailById(@PathVariable @Positive Long userId) {
+        if (!userService.existsById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(userService.getUserById(userId).getEmail());
     }
 }
