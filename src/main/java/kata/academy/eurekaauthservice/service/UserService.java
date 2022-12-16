@@ -15,4 +15,6 @@ public interface UserService {
     UserValidateDto validate(String token);
 
     boolean existsById(Long userId);
+
+    String getEmailById(Long userId);
 }
